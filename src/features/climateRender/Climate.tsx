@@ -15,7 +15,7 @@ function SelectRender() {
             dispatch(currentRenderType(event.target.value))
         }}>
             {options.map((value, index) => {
-                return <option key={index} value={value}>{value}</option>
+                return <option key={index} value={value} >{value}</option>
             })}
         </select>
     )
@@ -24,7 +24,8 @@ function SelectRender() {
 function CurrentRenderType() {
     const currentRenderType = useAppSelector((state) => state.climate.currentRenderType)
     switch (currentRenderType) {
-        // case "svg":
+        case "svg":
+            return <div>svg in work</div>
         //     return <SvgChart/>
         case "AgCharts":
             return <AgCharts/>
