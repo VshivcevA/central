@@ -8,7 +8,10 @@ export default function Nav() {
                     <Link to="/">Home</Link>
                 </li>
                 <li>
-                    <Link to="/serverInfo">serverInfo</Link>
+                    <Link to="/hardware">Hardware</Link>
+                </li>
+                <li>
+                    <Link to="/climate">Climate</Link>
                 </li>
             </ul>
         </nav>

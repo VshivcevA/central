@@ -1,0 +1,70 @@
+.container {
+  padding: 100px;
+}
+
+.svg {
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+
+.text {
+  transform: translateX(-18px);
+  user-select: none;
+  fill: tomato;
+
+  &__value {
+    display: none;
+    &--humidity{
+      fill: aqua;
+    }
+  }
+
+  .tspan {
+    font-size: 1rem;
+  }
+}
+
+
+.circle {
+  cursor: pointer;
+  &__humidity {
+    fill: aqua;
+  }
+  &__temperature{
+    fill: tomato;
+  }
+
+  &:hover {
+    ~ .text__value {
+      display: block;
+    }
+  }
+}
+
+.line {
+  position: relative;
+  &__humidity {
+    stroke: aqua;
+  }
+  &__temperature {
+    stroke: tomato;
+  }
+
+  &__max, &__avg, &__min {
+    opacity: 0.5;
+  }
+
+  &__max {
+    stroke: lightcoral;
+  }
+
+  &__avg {
+    stroke: lightyellow;
+  }
+
+  &__min {
+    stroke: lightblue;
+  }
+
+}

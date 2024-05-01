@@ -1,6 +1,7 @@
 import {createBrowserRouter} from "react-router-dom";
-import ServerInfo from "../features/serverInfo/ServerInfo.tsx";
+import Hardware from "../features/hardware/Hardware.tsx";
 import Layout from "../structure/Layout.tsx";
+import {Climate} from "../features/climateRender/Climate.tsx";
 
 export const router = createBrowserRouter([
     {
@@ -8,9 +9,13 @@ export const router = createBrowserRouter([
         element: <Layout/>,
         children: [
             {
-                path: 'serverInfo',
-                element: <ServerInfo/>
-            }
+                path: 'hardware',
+                element: <Hardware/>
+            },
+            {
+                path: 'climate',
+                element: <Climate/>
+            },
         ]
     },
 
