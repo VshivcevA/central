@@ -11,6 +11,11 @@ export const AgCharts = () => {
         dispatch(renderTypeOptions("AgCharts"))
     },[])
     const [options] = useState<AgChartOptions>({
+        background: {
+            fill: "transparent",
+        },
+        theme: 'ag-material-dark',
+        //todo title переделать на стейт от запроса
         title: {
             text: 'last 24 hour',
         },

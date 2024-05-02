@@ -3,6 +3,7 @@ import counterReducer from '../features/counter/counterSlice'
 import climateReducer from '../features/climateRender/climateSlice'
 import {climateApi} from "../services/climate";
 import {setupListeners} from "@reduxjs/toolkit/query";
+import {hardwareApi} from "../services/hardware.ts";
 // import {buildGetDefaultMiddleware} from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 
 export const store = configureStore({
@@ -10,9 +11,13 @@ export const store = configureStore({
         counter: counterReducer,
         climate: climateReducer,
         [climateApi.reducerPath]: climateApi.reducer,
+        [hardwareApi.reducerPath]: hardwareApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(climateApi.middleware),
+        getDefaultMiddleware().concat(
+            climateApi.middleware,
+            hardwareApi.middleware
+        ),
 })
 // optional, but required for refetchOnFocus/refetchOnReconnect behaviors
 // see `setupListeners` docs - takes an optional callback as the 2nd arg for customization
