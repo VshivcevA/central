@@ -1,6 +1,5 @@
 import {useAppDispatch} from "../../app/hooks.ts";
 import {useEffect, useState} from "react";
-import {status, update} from "../climateRender/climateSlice.ts";
 import {useGetHardwareQuery} from "../../services/hardware.ts";
 import {AgChartsReact} from "ag-charts-react";
 import {AgChartOptions} from "ag-charts-community";
@@ -9,8 +8,8 @@ export default function Hardware() {
     const dispatch = useAppDispatch()
     const {data, error, isLoading} = useGetHardwareQuery("nanoble33battery")
     useEffect(() => {
-        dispatch(update(data))
-        dispatch(status(!isLoading))
+        // dispatch(update(data))
+        // dispatch(status(!isLoading))
     }, [data, isLoading, error, dispatch])
 
     const [options] = useState<AgChartOptions>({
