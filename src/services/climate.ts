@@ -4,7 +4,7 @@ const url = import.meta.env.VITE_API_URL // prod
 
 export const climateApi = createApi({
     reducerPath: 'climateApi',
-    baseQuery: fetchBaseQuery({baseUrl: url+'climate/climate_test'}),
+    baseQuery: fetchBaseQuery({baseUrl: url+'climate/1'}),
     tagTypes: [],
     endpoints: (builder) => ({
         getClimate: builder.query({

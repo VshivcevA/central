@@ -8,7 +8,8 @@ export interface climateValue {
     humidity: number
 }
 export interface Query {
-    dateFrom:string,
+    // не понял почему сработало и не дало типизировать остальные ключи
+    [dateFrom:string]:string,
     timeFrom:string,
     dateTo:string,
     timeTo:string,
@@ -51,17 +52,12 @@ export const climateSlice = createSlice({
                 state.renderTypeOptions.push(action.payload)
             }
         },
-        queryUpdate: (state,action: PayloadAction<object>) => {
-            for (const stateKey in state.query){
+        queryUpdate: (state,action: PayloadAction<{[key:string]:string}>) => {
+            for (const stateKey in state.query) {
                 for (const actionKey in action.payload) {
                     if (stateKey.includes('time') && actionKey.includes('time') && state.syncTime) {
-                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                        // @ts-expect-error
                         state.query[stateKey] = action.payload[actionKey]
                     } else if (stateKey === actionKey) {
-                        // todo
-                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                        // @ts-expect-error
                         state.query[stateKey] = action.payload[actionKey]
                     }
                 }
