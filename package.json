@@ -1,5 +1,7 @@
 {
   "name": "central",
+  "homepage": "http://vshivtsev.ddns.net",
+  "proxy": "http://vshivtsev.ddns.net/api",
   "private": true,
   "version": "0.0.0",
   "type": "module",
