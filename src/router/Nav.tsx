@@ -5,7 +5,7 @@ export default function Nav() {
         <nav>
             <ul>
                 <li>
-                    <Link to="/">SystemInfo</Link>
+                    <Link to="/">System Info</Link>
                 </li>
                 <li>
                     <Link to="/hardware">Hardware</Link>

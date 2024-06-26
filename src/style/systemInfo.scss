@@ -1,0 +1,16 @@
+
+
+.systemInfo {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	&__partList {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+	}
+	&__char {
+		padding: 5px;
+		border: 1px solid grey;
+	}
+}
