@@ -1,28 +1,26 @@
 import {useGetSystemInfoQuery} from "../../services/systemInfo.ts";
-function RecursChar(item: [string, object|string|number|boolean|unknown], index: number) {
+
+function RecursChar(item: [string, object | string | number | boolean | unknown], index: number) {
     const char = item[1]
     const title = item[0]
-        if (typeof char === "string" || typeof char === "number" || typeof char === "boolean") {
-
-            return (
-                <div key={index} className={'systemInfo__char'}>
-                    <div>{title}</div>
-                    <div>{char.toString()==''?'-':char.toString()}</div>
+    if (char && typeof char === 'object') {
+        const arr = Object.entries(char)
+        return (
+            <div key={index} className={'systemInfo__char'}>
+                <div>{title}</div>
+                <div className={'systemInfo__partList'}>
+                    {arr.map((item, index) => RecursChar(item, index))}
                 </div>
-            )
-        } else if ( typeof char === 'object') {
-            const arr = Object.entries(char)
-            return (
-                <div key={index} className={'systemInfo__char '}>
-                    <div>{title}</div>
-                    <div className={'systemInfo__partList'}>
-                        {arr.map((item, index) => RecursChar(item, index))}
-                    </div>
-                </div>
-            )
-        }
-
-
+            </div>
+        )
+    } else if (char || typeof char === 'boolean') {
+        return (
+            <div key={index} className={'systemInfo__char'}>
+                <div>{title}</div>
+                <div>{String(char)}</div>
+            </div>
+        )
+    }
 }
 
 export default function SystemInfo() {
@@ -31,30 +29,9 @@ export default function SystemInfo() {
         const arr = Object.entries(data)
         return (
             <div className={'systemInfo'}>
-                {arr.map((item:[string,object|string|number|unknown], index) => RecursChar(item, index))}
+                {arr.map((item: [string, object | string | number | unknown], index) => RecursChar(item, index))}
             </div>
         )
     }
 
 }
-// <div key={i}>
-//     <h5>{part}</h5>
-//
-//     <div className={'systemInfo__partList'}>
-//
-//         {char.map((item2, index2) => {
-//             return (
-//                 <div className={'systemInfo__char'} key={index2}>
-//                     <div>
-//                         {item2[0]}
-//                     </div>
-//                     <div>
-//                         {item2[1] + ''}
-//                         {RecursChar(item2[1])}
-//                     </div>
-//                 </div>
-//             )
-//
-//         })}
-//     </div>
-// </div>
