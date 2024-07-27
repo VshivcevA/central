@@ -1,10 +1,10 @@
 import {useGetSystemInfoQuery} from "../../services/systemInfo.ts";
-function RecursChar(item: [string, object|unknown], index: number) {
+function RecursChar(item: [string, object|string|number|unknown], index: number) {
     const char = item[1]
     const title = item[0]
 
     if (char) {
-        if (typeof char !== 'object' && typeof char === "string") {
+        if (typeof char =="string" || typeof char =="number") {
             return (
                 <div key={index} className={'systemInfo__char'}>
                     <div>{title}</div>
@@ -32,7 +32,7 @@ export default function SystemInfo() {
         const arr = Object.entries(data)
         return (
             <div className={'systemInfo'}>
-                {arr.map((item:[string,object|unknown], index) => RecursChar(item, index))}
+                {arr.map((item:[string,object|string|number|unknown], index) => RecursChar(item, index))}
             </div>
         )
     }
