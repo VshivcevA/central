@@ -2,17 +2,15 @@ import {useGetSystemInfoQuery} from "../../services/systemInfo.ts";
 function RecursChar(item: [string, object|string|number|boolean|unknown], index: number) {
     const char = item[1]
     const title = item[0]
-    if (title=="releaseDate") {
-        console.log( title ,char)
-    }
-        if ( typeof char =="string" && char !== "" || typeof char =="number" || typeof char =="boolean") {
+        if (typeof char === "string" || typeof char === "number" || typeof char === "boolean") {
+
             return (
                 <div key={index} className={'systemInfo__char'}>
                     <div>{title}</div>
-                    <div>{char.toString()}</div>
+                    <div>{char.toString()==''?'-':char.toString()}</div>
                 </div>
             )
-        } else if (char && typeof char === 'object') {
+        } else if ( typeof char === 'object') {
             const arr = Object.entries(char)
             return (
                 <div key={index} className={'systemInfo__char '}>
