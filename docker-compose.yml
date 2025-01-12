@@ -4,6 +4,7 @@ services:
     image: node:22
     volumes:
       - ./:/buildFolder
+      - ./dist:/buildFolder/dist
     entrypoint: ["/bin/sh","-c"]
     command:
       - |

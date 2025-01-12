@@ -1,16 +1,14 @@
 export default function getCurrentDate(offset?:number) {
     if (offset) {
-        const date = new Date().toLocaleDateString().split('.');
-        date.forEach(datePart=>{
-            let dateDay = date[0]
-            if (datePart === dateDay) {
-                dateDay = (Number(dateDay) + offset).toString()
-                return date[0] = (dateDay.length < 2) ? ('0' + dateDay) : dateDay
-            }
-        })
-        return date.reverse().join('-')
+        // const newDate = new Date();
+        // newDate.setDate(newDate.getDate() + offset);
+        // const date = new Intl.DateTimeFormat('ru-RU')
+        //     .format(newDate);
+        return new Intl.DateTimeFormat('ru-RU')
+            .format(new Date().setDate(new Date().getDate() + offset)).split('.').reverse().join('-');
+        // return date.split('.').reverse().join('-')
     } else {
-        return new Date().toLocaleDateString().split('.').reverse().join('-')
+        return new Intl.DateTimeFormat('ru-RU').format(new Date()).split('.').reverse().join('-')
     }
 
 }

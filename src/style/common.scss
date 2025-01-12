@@ -1,6 +1,7 @@
-@import "/node_modules/normalize.css/normalize.css";
-@import "./header.scss";
-@import "./main.scss";
-@import "./nav.scss";
-@import "./climate.scss";
-@import "./hardware.scss";
+@use "/node_modules/normalize.css/normalize.css";
+@use "./header.scss";
+@use "./main.scss";
+@use "./nav.scss";
+@use "./climate.scss";
+@use "./hardware.scss";
+@use "./systemInfo.scss";
