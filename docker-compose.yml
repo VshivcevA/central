@@ -3,7 +3,7 @@ services:
   node:
     image: node:22
     volumes:
-      - ./:/buildFolder
+      - ./:/buildFolder:ro
       - ./dist:/buildFolder/dist
     entrypoint: ["/bin/sh","-c"]
     command:
