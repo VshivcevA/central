@@ -1,7 +1,7 @@
 name: Deploy to Server
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: # Возможность запускать вручную
   push:
     branches:
       - main # Выполнять при пуше в ветку main
@@ -25,15 +25,18 @@ jobs:
       # Шаг 3: Подключение к серверу и выполнение команд
       - name: Deploy and Build on Server
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.HOST }} << 'EOF'
+          ssh -v -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.HOST }} << 'EOF'
           set -e
 
           echo "Pulling latest changes..."
-          cd /host/central
+          cd /host/central || exit 1
           git pull
 
+          echo "Installing dependencies..."
+          npm ci
+
           echo "Running build script..."
-          npm run build # Запуск вашего скрипта сборки
+          npm run build
 
           echo "Deployment complete."
           EOF
