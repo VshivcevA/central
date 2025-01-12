@@ -25,7 +25,7 @@ jobs:
       # Шаг 3: Подключение к серверу и выполнение команд
       - name: Deploy and Build on Server
         run: |
-          ssh -v -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.HOST }} << 'EOF'
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.HOST }} << 'EOF'
           set -e
 
           echo "Pulling latest changes..."
