@@ -1,0 +1,39 @@
+name: Deploy to Server
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main # Выполнять при пуше в ветку main
+
+jobs:
+  deploy:
+    name: Deploy and Build
+    runs-on: ubuntu-latest
+
+    steps:
+      # Шаг 1: Проверка репозитория
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Шаг 2: Установка SSH-ключа
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_OPI5P }} # Секретный ключ из GitHub Secrets
+
+      # Шаг 3: Подключение к серверу и выполнение команд
+      - name: Deploy and Build on Server
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.HOST }} << 'EOF'
+          set -e
+
+          echo "Pulling latest changes..."
+          cd /host/central
+          git pull
+
+          echo "Running build script..."
+          npm run build # Запуск вашего скрипта сборки
+
+          echo "Deployment complete."
+          EOF
