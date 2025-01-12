@@ -1,0 +1,14 @@
+version: "3"
+services:
+  node:
+    image: node:22
+    volumes:
+      - ./:/buildFolder
+      - ./dist:/buildFolder/dist
+    entrypoint: ["/bin/sh","-c"]
+    command:
+      - |
+        cd buildFolder
+        npm i
+        npm audit fix
+        npm run build
